@@ -1,8 +1,9 @@
-const express = require("express")
-const underScore=require("underscore")
+const express = require('express')
+const underscore=require('underscore')
 const logger = require("../logger/logger.js")
 const helper = require("../util/helper.js")
 const validator=require("../validator/formatter.js")
+const helloChunk=require("../hello/hello")
 const router=express.Router();
 router.get('/test-me', function (req, res) {
     res.send("My first ever api hello Anmol")
@@ -13,6 +14,9 @@ router.get('/test-me', function (req, res) {
     validator.trimString()
     validator.changetoLowerCase()
     validator.changetoUpperCase()
+    helloChunk.lodashChunk()
+    helloChunk.loDashTail()
+    helloChunk.lodashUnion()
 });
 
 
