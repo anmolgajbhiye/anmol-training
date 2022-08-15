@@ -1,7 +1,103 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/students/:name', function(req, res) {
+
+
+router.post("/voting", function(req,res){
+let person=[
+    {
+    name: "Anmol Gajhiye",
+    age: 26,
+    votingStatus: true
+
+    },{
+     name: "gunjan meshram",
+     age: 18,
+     votingStatus: true
+    },{
+    name: "Amit trivedi",
+    age: 15,
+    votingStatus: false
+    },
+    {
+     name: "Divakar rao",
+     age:"40",
+     votingStatus: true   
+    },
+    {
+     name: "triveni dwivedi",
+     age: 25,
+     votingStatus: true   
+    }
+]
+inputAge=req.query.votingAge;
+person.map(per=>(per.age>inputAge)?per.votingStatus=true:per.votingStatus);
+let final=person.filter(pson=>{if(pson.votingStatus==true) {return pson.name}});
+  res.send({data:final})  
+})
+
+router.post("/players", function(req,res){
+    let players =
+    [
+        {
+            "name": "manish",
+            "dob": "1/1/1995",
+            "gender": "male",
+            "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+let data=req.body.name
+let sData=req.body
+let newArray
+let l=players.length
+console.log(sData)
+console.log(data)
+for(let i=0;i<l;i++){
+  if(data===players[i].name){
+return res.send("Already exist")
+  }
+  else{
+    newArray=players.concat(sData)
+  }  
+}
+res.send({players:newArray})
+
+   
+   });
+
+
+   
+
+
+  
+module.exports = router;
+
+
+
+
+
+/*router.get('/students/:name', function(req, res) {
     let studentName = req.params.name
     console.log(studentName)
     res.send(studentName)
@@ -68,6 +164,6 @@ router.post("/test-post-4", function(req, res) {
     let ele= req.body.element
     arr.push(ele)
     res.send(  { msg: arr , status: true }  )
-})
+})*/
 
-module.exports = router;
+//module.exports = router;
