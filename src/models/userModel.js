@@ -29,7 +29,7 @@ const bookSchema= new mongoose.Schema({
     // cars: [ String  ]
 }, { timestamps: true });*/
 
-module.exports = mongoose.model('User', bookSchema) //users
+module.exports = mongoose.model('books', bookSchema) //users
 
 
 
