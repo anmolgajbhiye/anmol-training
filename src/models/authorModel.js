@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema( {
-    firstName: String,
+    author_id: {
+      type: Number,
+      unique: true  
+    },
+    authour_name:String,
+    age: Number,
+    address: String
+    /*firstName: String,
     lastName: String,
     mobile: {
         type: String,
@@ -20,10 +27,10 @@ const userSchema = new mongoose.Schema( {
     //     fatherName: String,
     //     siblingName: String
     // },
-    // cars: [ String  ]
+    // cars: [ String  ]*/
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema) //users
+module.exports = mongoose.model('Auth', userSchema) //users
 
 
 
