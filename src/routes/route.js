@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 // const UserModel= require("../models/userModel.js")
-const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
-const commonMW = require ("../middlewares/commonMiddlewares")
+//const UserController= require("../controllers/userController")
+//const BookController= require("../controllers/bookController")
+//const commonMW = require ("../middlewares/commonMiddlewares")
+const newMiddleware=require("../middlewares/DateTimeIpMiddleware.js")
+const Assi= require("../controllers/Assignment")
 
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
@@ -11,8 +13,10 @@ router.get("/test-me", function (req, res) {
 
 
 
+router.get("/getDateAndTime",newMiddleware.Mid1,Assi.newTime)
+router.get("Ip",newMiddleware.Mid1,Assi.localIp)
 
-router.post("/createBook", BookController.createBook  )
+//router.post("/createBook", BookController.createBook  )
 
 
 
@@ -21,7 +25,7 @@ router.post("/createBook", BookController.createBook  )
 // router.get("/getUsersData", UserController.getUsersData)
 
 
-const mid1= function ( req, res, next) {
+/*const mid1= function ( req, res, next) {
     console.log ("inside GLOBAL MW");
     console.log("Hi I am a middleware named Mid1")
     // logic
@@ -41,7 +45,7 @@ const mid1= function ( req, res, next) {
 */
 
 // e.g. restricted and open-to-all API's can be handled like below now:
-router.get('/homePage', mid1, UserController.commonHandler)
+/*router.get('/homePage', mid1, UserController.commonHandler)
 router.get('/profileDetails', mid1, UserController.commonHandler)
 router.get('/friendList', mid1, UserController.commonHandler)
 router.get('/changePassword', mid1, UserController.commonHandler)
@@ -50,7 +54,7 @@ router.get('/termsAndConditions',  UserController.commonHandler)
 router.get('/register',  UserController.commonHandler, function(req, res){
     console.log('This is last console statement')
     res.send({status: true, msg: "Am ending the cycle."})
-})
+})*/
 
 
 
