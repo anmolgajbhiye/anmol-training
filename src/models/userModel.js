@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema( {
+    BookName: String,
+    AuthorNmae: String,
     firstName: String,
     lastName: String,
     mobile: {
@@ -18,4 +20,4 @@ const userSchema = new mongoose.Schema( {
     posts: {type: [], deafult: []}
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('Add', userSchema)

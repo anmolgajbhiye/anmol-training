@@ -1,15 +1,33 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-const createUser = async function (abcd, xyz) {
+const createBook= async function(req,res){
+try{
+  let data= req.body
+  console.log(data)
+  if(Object.keys(data).length !=0){
+    let savedData=await userModel.create(data)
+    res.status(201).send({msg:savedData})
+
+  }
+  else res.status(400).send({msg:"bad request"})
+
+}
+catch (error){
+  console.log("this is the error:", error.message)
+  res.status(500).send({msg:"Error", Err: error.message})
+}
+}
+
+//const createUser = async function (abcd, xyz) {
   //You can name the req, res objects anything.
   //but the first parameter is always the request 
   //the second parameter is always the response
-  let data = abcd.body;
+  /*let data = abcd.body;
   let savedData = await userModel.create(data);
   console.log(abcd.newAtribute);
   xyz.send({ msg: savedData });
-};
+};*/
 
 const loginUser = async function (req, res) {
   let userName = req.body.emailId;
@@ -115,8 +133,9 @@ const postMessage = async function (req, res) {
     return res.send({status: true, data: updatedUser})
 }
 
-module.exports.createUser = createUser;
+/*module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
-module.exports.postMessage = postMessage
+module.exports.postMessage = postMessage*/
+module.exports.createBook = createBook;
